@@ -1,5 +1,5 @@
 export interface Superpoderes {
     id: number,
-    nome: string,
+    superpoder: string,
     descricao: string    
 }

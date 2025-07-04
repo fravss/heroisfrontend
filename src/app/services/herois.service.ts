@@ -9,11 +9,21 @@ import { firstValueFrom } from 'rxjs';
 })
 export class HeroisService {
 
-  private baseUrl = environment.apiUrl;
+  private baseUrl = environment.apiUrl + '/heroi';
   constructor(private http: HttpClient) { }
 
   getHerois(): Promise<Herois[]> {
     return firstValueFrom(this.http.get<Herois[]>(this.baseUrl));
   }
+
+  deleteHeroi(id: number): Promise<void> {
+      return firstValueFrom(this.http.delete<any>(`${this.baseUrl}/${id}`));
+  }
+
+  salvarHeroi(heroi: Herois): Promise<Herois> {
+       return firstValueFrom(this.http.post<Herois>(`${this.baseUrl}`, heroi));
+  }
+  
+
 
 }
