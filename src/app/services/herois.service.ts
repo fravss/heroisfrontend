@@ -16,12 +16,20 @@ export class HeroisService {
     return firstValueFrom(this.http.get<Herois[]>(this.baseUrl));
   }
 
+  getHeroiPorId(id: number): Promise<Herois> {
+    return firstValueFrom(this.http.get<Herois>(`${this.baseUrl}/${id}`));
+  }
+
   deleteHeroi(id: number): Promise<void> {
       return firstValueFrom(this.http.delete<any>(`${this.baseUrl}/${id}`));
   }
 
   salvarHeroi(heroi: Herois): Promise<Herois> {
        return firstValueFrom(this.http.post<Herois>(`${this.baseUrl}`, heroi));
+  }
+
+  alterarHeroi(heroi: Herois, id: number): Promise<Herois> {
+       return firstValueFrom(this.http.put<Herois>(`${this.baseUrl}/${id}`, heroi));
   }
   
 

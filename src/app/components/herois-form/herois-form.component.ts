@@ -12,7 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SuperpoderesService } from '../../services/superpoderes.service';
 import { Superpoderes } from '../../interfaces/superpoderes';
 import { ToastService } from '../toast/toast.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -26,8 +26,9 @@ import { Router } from '@angular/router';
 export class HeroisFormComponent {
   formConfig: FormGroup;
   listaSuperpoderes: Superpoderes[] = [];
+  heroiId?: number;
 
-  constructor(private fb: FormBuilder, private router: Router, private heroiService: HeroisService, private superpoderesService: SuperpoderesService, private toastService: ToastService,) {
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private heroiService: HeroisService, private superpoderesService: SuperpoderesService, private toastService: ToastService,) {
     this.formConfig = this.fb.group({
       nome: ['', Validators.required],
       nomeHeroi: ['', Validators.required],
@@ -39,6 +40,28 @@ export class HeroisFormComponent {
   }
   ngOnInit() {
     this.carregarSuperpoderes();
+    this.heroiId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.heroiId) {
+      this.onEdit(this.heroiId);
+    }
+    
+  }
+
+  async onEdit(id: number): Promise<void> {
+    const heroiData = await this.heroiService.getHeroiPorId(id);
+    
+    const superpoderes = (heroiData as any).superpoderes as { id: number }[];
+    const superpoderesIds = superpoderes.map(sp => sp.id);
+
+    this.formConfig.patchValue({
+      nome: heroiData.nome,
+      nomeHeroi: heroiData.nomeHeroi,
+      dataNascimento: heroiData.dataNascimento,
+      peso: heroiData.peso,
+      altura: heroiData.altura,
+      superpoderes: superpoderesIds
+    });
+
   }
 
   async carregarSuperpoderes() {
@@ -48,8 +71,7 @@ export class HeroisFormComponent {
 
   async onSubmit(): Promise<void> {
     try {
-      if (this.formConfig.valid) {
-        const formValue = this.formConfig.value;
+      const formValue = this.formConfig.value;
 
         const heroi: Herois = {
           nome: formValue.nome,
@@ -59,13 +81,18 @@ export class HeroisFormComponent {
           altura: formValue.altura,
           superpoderIds: formValue.superpoderes
         };
+      if (!this.heroiId) {
         await this.heroiService.salvarHeroi(heroi)
         this.toastService.callSuccessToast("Herói salvo com sucesso!")
         this.router.navigate(['/heroi']);
+      } else {
+        await this.heroiService.alterarHeroi(heroi, this.heroiId);
+        this.toastService.callSuccessToast("Herói alterado com sucesso!")
+        this.router.navigate(['/heroi']);
       }
-    } catch(ex: any) {
+    } catch (ex: any) {
       this.toastService.callErrorToast(ex.error.message)
+    }
   }
-}
 
 }

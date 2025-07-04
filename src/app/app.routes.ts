@@ -4,6 +4,7 @@ import { HeroisFormComponent } from './components/herois-form/herois-form.compon
 
 export const routes: Routes = [
      { path: 'heroi', component: HeroisTableComponent },
-     { path: 'cadastrar', component: HeroisFormComponent}
+     { path: 'cadastrar', component: HeroisFormComponent},
+     { path: 'cadastrar/:id', component: HeroisFormComponent}
 
 ];
