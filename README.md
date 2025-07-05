@@ -1,28 +1,26 @@
-# heroisfrontend
-- Aplicação backend utilizada: https://github.com/fravss/heroisbackend
-## Requerimentos
+## Descrição
+Aplicação frontend em Angular para gerenciar heróis, consumindo a API backend.
+Backend: https://github.com/fravss/heroisbackend
 
-- [Node.js](https://nodejs.org/)
-- [Angular CLI](https://angular.io/cli) 
-  
+## Pré-requisitos
+- Node.js 
+- npm ou yarn
+- Angular CLI
 
-# Iniciar o servidor
+## Configuração
 
-1- baixar as dependencias
+1. Clone o repositório:
+git clone https://github.com/fravss/herois-frontend.git
+cd herois-frontend
 
-```bash
+2. Instale as dependências:
 npm install
-```
 
-2 - iniciar o projeto
 
-```bash
+## Como rodar
+
 ng serve
-```
+# ou
+npm start
 
-- O projeto estará disponível em : [http://localhost:4200/](http://localhost:4200/)
-
-
-
-
-
+Acesse em: http://localhost:4200
