@@ -48,7 +48,9 @@ export class HeroisFormComponent {
   }
 
   async onEdit(id: number): Promise<void> {
+    try {
     const heroiData = await this.heroiService.getHeroiPorId(id);
+   
     
     const superpoderes = (heroiData as any).superpoderes as { id: number }[];
     const superpoderesIds = superpoderes.map(sp => sp.id);
@@ -61,6 +63,9 @@ export class HeroisFormComponent {
       altura: heroiData.altura,
       superpoderes: superpoderesIds
     });
+     } catch( ex: any) {
+      this.toastService.callErrorToast(ex.error.message)
+    }
 
   }
 
