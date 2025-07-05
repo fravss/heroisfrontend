@@ -1,0 +1,33 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.27);
+    width: 100%;
+    max-width: 600px;
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 16px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.11);
+
+    &:hover {
+      background-color: darken(#34495e, 15%);
+    }
+  }
+}

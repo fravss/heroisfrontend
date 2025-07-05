@@ -20,7 +20,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   imports: [[ReactiveFormsModule, MatFormFieldModule, MatButtonModule, MatButton, MatInputModule, MatSelectModule,
     MatOptionModule, CommonModule, MatDatepickerModule]],
   templateUrl: './herois-form.component.html',
-  styleUrl: './herois-form.component.css',
+  styleUrl: './herois-form.component.scss',
   providers: [provideNativeDateAdapter()]
 })
 export class HeroisFormComponent {

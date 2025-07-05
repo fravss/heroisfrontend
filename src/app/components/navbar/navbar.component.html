@@ -1,0 +1,18 @@
+<mat-toolbar class="navbar">
+
+  <button mat-button [matMenuTriggerFor]="heroiMenu">
+    <mat-icon>report</mat-icon>
+    <span>Herói</span>
+    <mat-menu #heroiMenu="matMenu">
+      <button mat-menu-item [routerLink]="'/cadastrar'">
+        <mat-icon>add</mat-icon>
+        <span>Novo herói</span>
+      </button>
+      <button mat-menu-item [routerLink]="'/heroi'">
+        <mat-icon>density_small</mat-icon>
+        <span>Todas os heróis</span>
+      </button>
+    </mat-menu>
+  </button>
+  <span class="spacer"></span>
+</mat-toolbar>

@@ -12,7 +12,7 @@ import { ToastService } from '../toast/toast.service';
   selector: 'app-herois-table',
   imports: [MatTableModule, MatIconModule, MatButtonModule],
   templateUrl: './herois-table.component.html',
-  styleUrl: './herois-table.component.css',
+  styleUrl: './herois-table.component.scss',
   providers: [DatePipe]
 })
 export class HeroisTableComponent implements OnInit {
