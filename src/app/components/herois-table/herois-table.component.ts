@@ -8,6 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastService } from '../toast/toast.service';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { SuperpoderDialogComponent } from '../superpoder-dialog/superpoder-dialog.component';
 
 @Component({
   selector: 'app-herois-table',
@@ -27,6 +29,7 @@ export class HeroisTableComponent implements OnInit {
     private router: Router,
     private toastService: ToastService,
     private datePipe: DatePipe,
+     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -57,10 +60,24 @@ export class HeroisTableComponent implements OnInit {
     try {
       await this.heroiService.deleteHeroi(id);
       this.heroisData = this.heroisData.filter(heroisData => heroisData.id !== id);
+      this.dataSource = new MatTableDataSource(this.heroisData);
+      if (this.paginator) {
+        this.dataSource.paginator = this.paginator;
+      }
       this.toastService.callSuccessToast('Heroi deletado com sucesso!')
     } catch (ex: any) {
       this.toastService.callErrorToast(ex.error.message)
     }
+  }
+
+  async visualizarHeroi(heroi: Herois) {
+  
+    console.log(heroi.superpoderes)
+    this.dialog.open(SuperpoderDialogComponent, {
+    data: heroi,
+    width: '400px',
+  });
+    
   }
 
 }

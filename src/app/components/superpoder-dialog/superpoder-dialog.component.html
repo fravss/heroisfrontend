@@ -1,0 +1,18 @@
+<div class="dialog-container">
+  <button mat-icon-button class="close-button" (click)="fechar()" aria-label="Fechar">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <h2>Superpoderes</h2>
+
+  <div class="conteudo">
+
+    <div *ngIf="data.superpoderes?.length">
+      <ul>
+        <li *ngFor="let poder of data.superpoderes">
+          {{ poder.superpoder }} - {{ poder.descricao }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

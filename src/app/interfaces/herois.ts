@@ -7,5 +7,6 @@ export interface Herois {
     dataNascimento: string,
     peso: number,
     altura: number,
-    superpoderIds?: Superpoderes[]
+    superpoderIds?: number[],
+    superpoderes?: Superpoderes[]
 }
