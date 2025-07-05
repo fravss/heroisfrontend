@@ -1,4 +1,4 @@
-## Descrição
+## heroisfrontend
 Aplicação frontend em Angular para gerenciar heróis, consumindo a API backend.
 Backend: https://github.com/fravss/heroisbackend
 
